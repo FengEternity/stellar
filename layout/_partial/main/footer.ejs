@@ -1,5 +1,9 @@
 <%
-const content = theme.footer.content?.replace('{author.name}', (config.author || 'Anonymity'))?.replace('{theme.name}', stellar_info('name'))?.replace('{theme.version}', stellar_info('version'))?.replace('{theme.tree}', stellar_info('tree'))
+const content = theme.footer.content?.replace('{author.name}', (config.author || 'Anonymity'))
+    ?.replace('{theme.name}', stellar_info('name'))
+    ?.replace('{theme.version}', stellar_info('version'))
+    ?.replace('{theme.tree}', stellar_info('tree'));
+
 function layoutDiv() {
   var el = ''
   el += `<footer class="page-footer${scrollreveal(' ')} footnote">`
@@ -28,8 +32,37 @@ function layoutDiv() {
   if (content) {
     el += markdown(content)
   }
+  // Adding site runtime and last updated timestamp
+  el += '<center><div class="site-runtime">本站已运行：<span id="site-runtime"></span></div></center>';
+  el += '<center><div class="last-updated">最后更新于：<span id="last-updated"></span></div></center>';
   el += '</div></footer>'
   return el
 }
 %>
 <%- layoutDiv() %>
+
+<script>
+  // Function to calculate and display site runtime
+  function updateSiteRuntime() {
+    const startTime = new Date('2024-05-07'); // Set your start date in a correct format, e.g., '2023-01-01'
+    const now = new Date();
+    const runtime = now - startTime; // This is in milliseconds
+    const seconds = Math.floor(runtime / 1000 % 60);
+    const minutes = Math.floor(runtime / (1000 * 60) % 60);
+    const hours = Math.floor(runtime / (1000 * 60 * 60) % 24);
+    const days = Math.floor(runtime / (1000 * 60 * 60 * 24));
+    document.getElementById('site-runtime').textContent = `${days}天${hours}时${minutes}分${seconds}秒`;
+  }
+  
+  // Function to display last updated time
+  function updateLastUpdated() {
+    const lastUpdated = new Date(document.lastModified); // Gets the last modified date of the document
+    const formattedDate = lastUpdated.toLocaleString(); // Converts date to local string format
+    document.getElementById('last-updated').textContent = formattedDate;
+  }
+  
+  // Update the site runtime every second
+  setInterval(updateSiteRuntime, 1000);
+  updateLastUpdated();
+  </script>
+  
