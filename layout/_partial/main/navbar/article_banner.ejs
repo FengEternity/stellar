@@ -4,10 +4,13 @@ var banner = {}
 
 if (page.banner) {
   banner.url = page.banner
-} else if (theme.topic.tree[page.topic]?.banner != null) {
+<!-- } else if (theme.topic.tree[page.topic]?.banner != null) {
   banner.url = theme.topic.tree[page.topic]?.banner
 } else if (theme.wiki.tree[page.wiki]?.banner != null) {
-  banner.url = theme.wiki.tree[page.wiki]?.banner
+  banner.url = theme.wiki.tree[page.wiki]?.banner -->
+} else if (page.cover) {
+  // 如果文章有封面，则默认使用封面作为横幅
+  banner.url = page.cover
 }
 banner = Object.assign(banner, page.banner_info)
 // 标题
