@@ -26,32 +26,58 @@ function layoutArchiveList() {
   var years = []
   const posts = page.author != null ? site.posts.filter(p => (p.author || theme.default_author.id) == page.author.id) : site.posts
   posts.sort('date', -1).each(function(post) {
-  	post.year = date(post.date, 'YYYY')
-  	  if (post.year && (years.includes(post.year) == false) && (post.title || post.date)) {
-  		  years.push(post.year)
+    post.year = date(post.date, 'YYYY')
+    post.month = date(post.date, 'MM')
+    if (post.year && (years.includes(post.year) == false) && (post.title || post.date)) {
+      years.push(post.year)
     }
   })
   for (let year of years) {
     el += `<article class="${scrollreveal('')}" id="archive">`
-  	el += `<div class='archive-header h4'>${year}</div>`
-    posts.sort('date', -1).filter(function (post) {
+    el += `<div class='archive-header h4'>${year}</div>`
+    
+    // 获取该年份的所有月份
+    var months = []
+    posts.filter(function(post) {
       post.year = date(post.date, 'YYYY')
       return post.year == year
     }).each(function(post) {
-      el += `<div class="archive-list">`
-      el +=`<a class='post fs14' href="${url_for(post.link || post.path)}">`
-      el += `<time>${date(post.date, 'MM-DD')}</time>`
-      el += `<span>`
-      if (post.title) {
-        el += post.title
-      } else if (post.date) {
-        el += date(post.date, config.date_format)
+      post.month = date(post.date, 'MM')
+      if (!months.includes(post.month)) {
+        months.push(post.month)
       }
-      el += `</span>`
-      el += `</a>`
-      el += `</div>`
     })
-  	el += `</article>`
+    
+    // 按月份倒序排列
+    months.sort((a, b) => b - a)
+    
+    // 遍历每个月
+    for (let month of months) {
+      el += `<div class="archive-month">`
+      el += `<div class='archive-month-header h5'>${month}月</div>`
+      
+      posts.sort('date', -1).filter(function(post) {
+        post.year = date(post.date, 'YYYY')
+        post.month = date(post.date, 'MM')
+        return post.year == year && post.month == month
+      }).each(function(post) {
+        el += `<div class="archive-list">`
+        el += `<a class='post fs14' href="${url_for(post.link || post.path)}">`
+        el += `<time>${date(post.date, 'DD')}日</time>`
+        el += `<span>`
+        if (post.title) {
+          el += post.title
+        } else if (post.date) {
+          el += date(post.date, config.date_format)
+        }
+        el += `</span>`
+        el += `</a>`
+        el += `</div>`
+      })
+      
+      el += `</div>`
+    }
+    el += `</article>`
   }
   el += `</div>`
   return el
