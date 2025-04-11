@@ -19,9 +19,10 @@
       position: relative
       margin: 0 0 0.5rem 1.5rem !important
       font-size: $fs-13
-      color: var(--text-p3)
+      color: var(--text-p4)
       display: flex
       align-items: center
+      transition: color 0.3s ease
       &:before
         content: ''
         position: absolute
@@ -43,6 +44,8 @@
       p,li
         --fsp: $fsp3
         margin: 0.25rem 0
+        color: var(--text-p4)
+        transition: color 0.3s ease
         &:first-child
           margin-top: 0
         &:last-child
@@ -50,7 +53,8 @@
       .title
         font-weight: 500
         margin: 0 0 0.5rem
-        color: var(--text-p1)
+        color: var(--text-p3)
+        transition: color 0.3s ease
       code 
         background: none
         padding: 0
@@ -58,13 +62,19 @@
       .highlight, pre:not([class]):has(>code)
         background: var(--alpha50)
     &:hover
-      .header:before
-        transform: scale(1.6)
-        background: $color-theme
+      .header
+        color: var(--text-p2)
       .body
         transform: scale(1.04)
         background: var(--alpha100)
         box-shadow: $boxshadow-card
+        p,li
+          color: var(--text-p1)
+        .title
+          color: var(--text-p1)
+      .header:before
+        transform: scale(1.6)
+        background: $color-theme
         
   .tag-plugin.timeline[api] .body .footer
     background: none
