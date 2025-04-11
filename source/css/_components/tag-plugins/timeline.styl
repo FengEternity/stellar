@@ -6,9 +6,9 @@
     position: absolute
     z-index: 0
     background: var(--block-hover)
-    width: 4px
+    width: 2px
     left: 0px
-    border-radius: 8px
+    border-radius: 4px
     top: .5rem
     bottom: 0
   &:has(.loading-wrap)
@@ -23,27 +23,28 @@
   align-items: flex-start
   box-sizing: border-box
   max-width: 100%
+  padding: 0 0 1.5rem
   >.header, >.body
     box-sizing: border-box
     max-width: @max-width
   &[highlight] .header:before
     background: $color-theme
-  &+.timenode
-    margin-top: 1rem
+  &:last-child
+    padding-bottom: 0
   &:hover .header
     span
       color: var(--text-p1)
     &:before
       background: $color-theme
-      height: 16px
-      top: 'calc(50% - 0.5 * %s)' % @height
+      height: 8px
+      top: 'calc(50% - 4px)'
       transform: scale(1)
 
 .tag-plugin.timeline .timenode .header
   display: flex
   align-items: center
   position: relative
-  margin: 0.25rem 0
+  margin: 0 0 0.75rem
   font-size: $fs-13
   a.user-info span
     font-weight: 600
@@ -71,30 +72,32 @@
     content: ''
     position: absolute
     left: -16px
-    width: 4px
-    border-radius: 12px
-    height: 4px
-    top: 'calc(50% - 0.5 * %s)' % @height
+    width: 6px
+    border-radius: 6px
+    height: 6px
+    top: 'calc(50% - 3px)'
     background: var(--text-meta)
     trans4 background height top transform
-    transform: scale(2)
-
+    transform: scale(1)
 
 .tag-plugin.timeline .body
   background: var(--card)
   border-radius: $border-card
-  border-top-left-radius: 2px
-  padding: 0.5rem 1rem
-  margin-top: 4px
+  padding: 1rem
+  margin-left: -4px
+  width: calc(100% + 4px)
   box-shadow: $boxshadow-block
   p
     --fsp: $fsp1
+    margin: 0.5rem 0
+    &:first-child
+      margin-top: 0
+    &:last-child
+      margin-bottom: 0
     img  
       display: block
   &:empty
     display: none
-  p,.highlight,ol,ul,.tag-plugin
-    margin: .5rem 0
   .tag-plugin.copy
     width: 240px
 
@@ -103,10 +106,12 @@
     display: block
     color: var(--text-p1)
     line-height: 1.25
-    padding: 0.75rem 1rem
+    padding: 1rem
     --fsp: $fsp1
     font-size: var(--fsp)
-
+    text-decoration: none
+    &:hover
+      background: var(--block-hover)
 
 .tag-plugin.timeline[api] .body
   p.title

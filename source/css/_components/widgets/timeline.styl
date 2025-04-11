@@ -1,49 +1,81 @@
-.widget-wrapper.timeline
+.widgets .widget-wrapper.timeline
   .tag-plugin.timeline
-    padding-left: 0
+    padding-left: 0 !important
     &:before
-      left: 6px
+      left: 6px !important
+      width: 2px !important
+      background: var(--block-hover) !important
   .widget-body
-    overflow hidden
-  .body
-    a
-      trans1 all
-      word-break: break-all
-      --fsp: $fsp2
+    overflow: hidden
+    padding: 0 var(--gap-padding)
   .tag-plugin.timeline .timenode
-    z-index 1
-    margin-top: 0.25rem
+    position: relative
+    z-index: 1
+    margin: 0
+    padding: 0 0 1rem 0
+    &:last-child
+      padding-bottom: 0
     .header
-      margin: 0.25rem var(--gap-padding)
-      .user-info
-        background: none
-        padding-right: 0
-      img
-        display: none
-
-    .header:before
-      left: calc(6px - var(--gap-padding))
+      position: relative
+      margin: 0 0 0.5rem 1.5rem !important
+      font-size: $fs-13
+      color: var(--text-p3)
+      display: flex
+      align-items: center
+      &:before
+        content: ''
+        position: absolute
+        left: -1.5rem
+        width: 6px
+        height: 6px
+        background: var(--text-meta)
+        border-radius: 50%
+        top: calc(50% - 3px)
+        transition: transform 0.3s ease, background-color 0.3s ease
     .body
+      margin: 0 0 0 1.5rem
+      padding: 0.75rem 1rem
       border-radius: $border-card
-      padding: 0.5rem 1rem
+      background: var(--alpha50)
+      box-shadow: none
+      transform-origin: right center
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1)
       p,li
         --fsp: $fsp3
+        margin: 0.25rem 0
+        &:first-child
+          margin-top: 0
+        &:last-child
+          margin-bottom: 0
+      .title
+        font-weight: 500
+        margin: 0 0 0.5rem
+        color: var(--text-p1)
       code 
         background: none
         padding: 0
         margin: 0
       .highlight, pre:not([class]):has(>code)
         background: var(--alpha50)
-      
-      
+    &:hover
+      .header:before
+        transform: scale(1.6)
+        background: $color-theme
+      .body
+        transform: scale(1.04)
+        background: var(--alpha100)
+        box-shadow: $boxshadow-card
+        
   .tag-plugin.timeline[api] .body .footer
     background: none
+    margin: 0.5rem 0 0
+    padding: 0
 
 .l_left .widget-wrapper.timeline
   .tag-plugin.timeline
     padding-left: 0
     &:before
-      content: none
-.l_left .widget-wrapper.timeline .body
-  box-shadow: none
-  background: var(--alpha50)
+      display: none
+  .body
+    box-shadow: none
+    background: var(--alpha50)

@@ -1,25 +1,61 @@
 <%
+function formatDate(date) {
+  return new Date(date).toLocaleString('zh-CN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).replace(/\//g, '年').replace(/\//, '月') + '日';
+}
+
 function layoutDiv() {
   var el = '';
-  if (item.api == undefined) {
+  if (!item.api && !item.data) {
     return el;
   }
-  el += `<widget class="widget-wrapper${scrollreveal(' ')} timeline">`
-    if (item.title) {
-      el += '<div class="widget-header dis-select">';
-      el += '<span class="name">' + item.title + '</span>';
-      el += '</div>';
-    }
-    el += '<div class="widget-body fs14">';
-      el += `<div class="tag-plugin timeline ds-${(item.type || 'timeline')}"`;
-      ['api', 'user', 'hide', 'limit'].forEach(key => {
-        if (item[key]) {
-          el += ' ' + key + '="' + item[key] + '"';
-        }
-      });
-      el += '>';
-      el += '</div>';
+  
+  el += `<widget class="widget-wrapper${scrollreveal(' ')} timeline">`;
+  if (item.title) {
+    el += '<div class="widget-header dis-select">';
+    el += '<span class="name">' + item.title + '</span>';
     el += '</div>';
+  }
+  el += '<div class="widget-body fs14">';
+  
+  // 静态数据模式
+  if (item.data) {
+    el += '<div class="tag-plugin timeline">';
+    item.data.forEach((node, i) => {
+      el += '<div class="timenode" index="' + i + '">';
+      // 时间头部
+      el += '<div class="header">';
+      el += '<span>' + formatDate(node.date) + '</span>';
+      el += '</div>';
+      // 内容主体
+      el += '<div class="body">';
+      if (node.title) {
+        el += '<div class="title">' + node.title + '</div>';
+      }
+      // 处理内容中的换行
+      const content = node.content.split('\n').map(line => line.trim()).filter(line => line).join('\n');
+      el += markdown(content);
+      el += '</div>';
+      el += '</div>';
+    });
+    el += '</div>';
+  }
+  // API 模式
+  else if (item.api) {
+    el += `<div class="tag-plugin timeline ds-${(item.type || 'timeline')}"`;
+    ['api', 'user', 'hide', 'limit'].forEach(key => {
+      if (item[key]) {
+        el += ' ' + key + '="' + item[key] + '"';
+      }
+    });
+    el += '>';
+    el += '</div>';
+  }
+  
+  el += '</div>';
   el += '</widget>';
   return el;
 }
