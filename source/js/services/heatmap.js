@@ -79,7 +79,7 @@ utils.jq(() => {
             enterable: true,
             backgroundColor: currentTheme.backgroundColor,
             borderWidth: 0,
-            padding: [10, 15],
+            padding: [10, 10],
             textStyle: {
               color: currentTheme.textColor,
               fontSize: 12
