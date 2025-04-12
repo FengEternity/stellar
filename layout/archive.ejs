@@ -22,6 +22,14 @@ function layoutArchiveList() {
     page.title = __('btn.archives')
     el += partial('_partial/main/navbar/nav_tabs_blog')
   }
+  
+  // 添加热力图
+  el += `<div class="post-list${cls}">`
+  el += `<article class="${scrollreveal('')}">`
+  el += `<div class="ds-heatmap" api="/api/posts.json"></div>`
+  el += `</article>`
+  el += `</div>`
+  
   el += `<div class="post-list${cls} archives">`
   var years = []
   const posts = page.author != null ? site.posts.filter(p => (p.author || theme.default_author.id) == page.author.id) : site.posts

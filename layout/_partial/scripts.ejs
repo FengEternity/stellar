@@ -33,3 +33,10 @@ function custom_inject() {
 
 <!-- inject -->
 <%- custom_inject() %>
+
+<% if (theme.stellar.plugins?.echarts) { %>
+<script src="<%- theme.stellar.plugins.echarts %>"></script>
+<% } %>
+<% if (theme.stellar.services?.heatmap) { %>
+<script src="<%- theme.stellar.services.heatmap %>"></script>
+<% } %>
