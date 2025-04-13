@@ -71,29 +71,58 @@
   h1,h2,h3,h4,h5,h6
     color: var(--text)
     line-height: 1.8
-    >a:first-child
-      background: $color-theme
-      border-radius: 2px
-      margin-right: 8px
-      trans1 background
-      &:hover
-        background: $color-hover
-      &:before
-        content: ''
-        color: white
-        font-weight: 700
-        padding: 0 2px
-        font-size: $fs-12
-  h2
-    font-weight: 500
-    >a:first-child:before
-      content: ':'
+    margin: 1.5em 0 1em
+    font-weight: 600
+    position: relative
+    padding-left: 1.8em
+    &:before
+      position: absolute
+      left: 0
+      color: var(--theme-link)
+      font-weight: 400
+      font-family: monospace
     
-  blockquote, .tag-plugin
-    h2,h3,h4,h5,h6
-      margin-top: 0.25em
-      margin-bottom: 0.25em
-      
+  h1
+    font-size: 1.8em
+    &:before
+      content: '# '
+    
+  h2
+    font-size: 1.5em
+    padding-bottom: 0.3em
+    border-bottom: 1px solid var(--theme-link-opa)
+    &:before
+      content: '## '
+    
+  h3
+    font-size: 1.3em
+    padding-left: 2.2em
+    &:before
+      content: '### '
+    
+  h4
+    font-size: 1.2em
+    padding-left: 2.6em
+    &:before
+      content: '#### '
+    
+  h5
+    font-size: 1.1em
+    padding-left: 3em
+    &:before
+      content: '##### '
+    
+  h6
+    font-size: 1em
+    padding-left: 3.4em
+    &:before
+      content: '###### '
+
+  // 移除原来的链接样式
+  h1,h2,h3,h4,h5,h6
+    >a:first-child
+      display: none
+
 .md-text.content:first-child .tag-plugin:first-child
   margin-top: 0
 
