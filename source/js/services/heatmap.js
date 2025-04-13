@@ -10,11 +10,11 @@ utils.jq(() => {
 
       // 创建热力图容器
       const chartDom = document.createElement('div');
-      chartDom.style.cssText = 'height:110px;margin:1rem 0;padding:0.5rem;';
+      chartDom.style.cssText = 'height:110px;margin:1rem 0;padding:0.5rem;background:transparent;';
       el.appendChild(chartDom);
       
       // 初始化 ECharts
-      const myChart = echarts.init(chartDom);
+      const myChart = echarts.init(chartDom, null, { renderer: 'canvas' });
       window.addEventListener('resize', () => myChart.resize());
 
       // 获取数据并渲染热力图
@@ -74,6 +74,7 @@ utils.jq(() => {
         const currentTheme = isDark ? themes.dark : themes.light;
 
         const option = {
+          backgroundColor: 'transparent',
           tooltip: {
             hideDelay: 1000,
             enterable: true,
@@ -108,24 +109,26 @@ utils.jq(() => {
             right: 5,
             top: 20,
             bottom: 0,
-            cellSize: [13, 13],
+            cellSize: [8, 8],
+            gap: 6,
             range: [formatDate(startDate), formatDate(endDate)],
             itemStyle: {
               color: currentTheme.blockColor,
               borderWidth: 0,
-              borderRadius: 2,
-              shadowBlur: 2,
-              shadowColor: 'rgba(0, 0, 0, 0.05)',
-              shadowOffsetX: 0,
-              shadowOffsetY: 1
+              borderRadius: 2
             },
-            yearLabel: { show: false },
-            monthLabel: { 
-              nameMap: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+            splitLine: {
+              show: false
+            },
+            monthLabel: {
+              nameMap: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
               textStyle: {
                 color: currentTheme.textColor,
-                fontSize: 12
-              }
+                fontSize: 12,
+                fontWeight: 400
+              },
+              align: 'left',
+              margin: 8
             },
             dayLabel: {
               firstDay: 1,
@@ -133,10 +136,8 @@ utils.jq(() => {
               textStyle: {
                 color: currentTheme.textColor,
                 fontSize: 12
-              }
-            },
-            splitLine: {
-              show: false
+              },
+              margin: 5
             }
           },
           series: {
@@ -145,7 +146,7 @@ utils.jq(() => {
             data: data,
             itemStyle: {
               borderWidth: 0,
-              borderColor: currentTheme.backgroundColor
+              borderRadius: 2
             }
           }
         };

@@ -1,18 +1,28 @@
 .archives {
-  // ... existing code ...
-}
-
-.ds-heatmap {
-  padding: 1.5rem;
-  background: var(--card-background);
-  border-radius: var(--card-radius);
-  box-shadow: var(--card-shadow);
+  margin: 1rem 0;
   
-  a {
-    color: var(--theme-highlight);
+  .ds-heatmap {
+    margin: 1rem 0;
+    padding: 1.5rem;
+    background: var(--card-background);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    
+    > div {
+      background: transparent !important;
+    }
+    
     &:hover {
-      color: var(--theme-highlight-hover);
-      text-decoration: underline;
+      box-shadow: var(--card-shadow-hover);
+    }
+    
+    a {
+      color: var(--theme-highlight);
+      &:hover {
+        color: var(--theme-highlight-hover);
+        text-decoration: underline;
+      }
     }
   }
 }
