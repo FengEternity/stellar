@@ -1,0 +1,11 @@
+<%
+site.categories.sort('path').forEach(function(category) {
+%>
+  <div class="category-item">
+    <a class="cat" href="<%- url_for(category.path) %>">
+      <span class="folder-icon"><%- icon('default:category') %></span>
+      <span class="name"><%- category.name %></span>
+      <span class="badge">(<%- category.posts.length %>)</span>
+    </a>
+  </div>
+<% }) %> 

@@ -107,3 +107,31 @@ $boxshadow-card-float = 0 12px 16px -4px rgba(0, 0, 0, 0.2)
 $boxshadow-button = 0 0 2px 0px rgba(0, 0, 0, 0.04), 0 0 8px 0px rgba(0, 0, 0, 0.04)
 $boxshadow-block = 0 1px 4px 0px rgba(0, 0, 0, 0.02), 0 2px 8px 0px rgba(0, 0, 0, 0.02)
 $boxshadow-toast = 0 4px 8px 0px rgba(0, 0, 0, 0.1), 0 12px 16px -4px rgba(0, 0, 0, 0.2)
+
+.catelinklist
+  .category-item
+    margin: 8px 0
+    
+    a.cat
+      display: flex
+      align-items: center
+      color: var(--text-p3)
+      transition: all 0.3s ease
+      
+      &:hover
+        color: var(--text-p1)
+      
+      .folder-icon
+        margin-left: 10px
+        margin-right: 8px
+        opacity: 0.8
+        svg
+          width: 1.2em
+          height: 1.2em
+        
+      .name
+        flex: 1
+        
+      .badge
+        color: var(--text-p4)
+        font-size: 0.9em
