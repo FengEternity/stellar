@@ -121,14 +121,16 @@ function custom_inject() {
 
   <link rel="stylesheet" href="<%- url_for(`${theme.stellar.main_css}?v=${stellar_info('version')}`) %>">
 
-
-  <% if (config.favicon) { %>
-    <%- favicon_tag(config.favicon) %>
-  <% } %>
-
   <% if (config.highlight && config.highlight.enable == true && config.highlight.hljs == true) { %>
     <%- css(theme.style.codeblock.highlightjs_theme) %>
   <% } %>
 
   <%- custom_inject() %>
+
+  <!-- 固定的图标链接 -->
+  <link rel="shortcut icon" href="/images/icons32.ico">
+  <link rel="icon" type="image/x-icon" href="/images/icons32.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icons96.png">
+  <link rel="icon" sizes="32x32" href="/images/icons32.ico">
+  <link rel="icon" sizes="16x16" href="/images/icons16.ico">
 </head>
