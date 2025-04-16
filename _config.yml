@@ -10,6 +10,7 @@ stellar:
     echarts: https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js
   services:
     heatmap: /js/services/heatmap.js
+    memos: /js/services/memos.js
 
 
 ######## head tags ########
