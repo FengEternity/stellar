@@ -6,17 +6,17 @@ const path = require('path');
 hexo.extend.generator.register('memos', function(locals) {
   const log = this.log || console;
   
-  log.info('Memos generator started');
+  // log.info('Memos generator started');
   
   const memosDir = path.join(this.source_dir, '_posts/_memos');
-  log.info('Looking for memos in:', memosDir);
+  // log.info('Looking for memos in:', memosDir);
   
   try {
     if (fs.existsSync(memosDir)) {
       const files = fs.readdirSync(memosDir)
         .filter(file => file.endsWith('.md'));
       
-      log.info(`Found ${files.length} memo files`);
+      // log.info(`Found ${files.length} memo files`);
       
       const memos = [];
       
@@ -63,7 +63,7 @@ hexo.extend.generator.register('memos', function(locals) {
         return dateB - dateA;
       });
       
-      log.info(`Successfully generated ${memos.length} memos`);
+      // log.info(`Successfully generated ${memos.length} memos`);
       
       // 生成 API 文件
       return {
@@ -71,10 +71,10 @@ hexo.extend.generator.register('memos', function(locals) {
         data: JSON.stringify(memos, null, 2)
       };
     } else {
-      log.warn('Memos directory not found:', memosDir);
+      console.warn('Memos directory not found:', memosDir);
     }
   } catch (err) {
-    log.error('Error in memos generator:', err);
+    console.error('Error in memos generator:', err);
   }
   
   // 如果出错或目录不存在，返回空数组
