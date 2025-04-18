@@ -23,6 +23,9 @@ open_graph:
   enable: true
   twitter_id: # for open_graph meta
 
+# Analytics
+analytics:
+  la: true
 
 ######## Sidebar ########
 # 左上角显示的 logo 区域，包含图标、大标题、副标题
