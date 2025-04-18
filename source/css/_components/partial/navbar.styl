@@ -3,14 +3,11 @@
   z-index: 8
   top: 0
   background: var(--site-bg)
-  if hexo-config('style.site') && hexo-config('style.site.background-image')
-    position inherit
-    background: none
-  else 
-    position: sticky
-    position: -webkit-sticky
-    margin-bottom: 1px
-    margin-top: -8px
+  position: sticky
+  position: -webkit-sticky
+  margin-bottom: 1px
+  margin-top: -8px
+  
   &:after
     content: ''
     height: 2px
@@ -21,56 +18,104 @@
     right: 1rem
     background: var(--block-hover)
 
-.navbar nav
-  display: flex
-  overflow: scroll visible
-  scrollbar(0, 0)
-  font-size: $fs-14
-  >p
-    margin: 0
-  a
-    padding: 2px 0.75rem
-    if hexo-config('style.site') && hexo-config('style.site.background-image')
-      margin: 10px 0.25rem 8px 0
-    else
+  nav
+    display: flex
+    align-items: center
+    font-size: $fs-14
+    overflow: visible
+    
+    > a, .nav-item > a
+      padding: 2px 0.75rem
       margin: 10px 0.25rem 8px 0.25rem
-    line-height: 2
-    color: var(--text-p3)
-    border-radius: $border-button
-    font-weight: 500
-    white-space: nowrap
-    position: relative
-    z-index: 1
-    &:after
-      height: 2px
-      position: absolute
-      bottom: -8px
-      left: 0.75rem
-      right: 0.75rem
-      background: $color-theme
-      border-radius: 2px
-      pointer-events: none
-    &:hover
-      background: var(--block-hover)
-    &.active, &:hover
-      color: var(--text-p1)
-    &.active
-      background: var(--card)
-      box-shadow: $boxshadow-button
-      cursor default
-      pointer-events: none
-    &.active:after
-      content: ''
-  a+a
-    margin-left: 4px
+      line-height: 2
+      color: var(--text-p3)
+      border-radius: $border-button
+      font-weight: 500
+      white-space: nowrap
+      transition: all 0.2s ease
+      
+      &:hover
+        color: var(--text-p1)
+        background: var(--block-hover)
+      
+      &.active
+        color: var(--text-p1)
+        background: var(--card)
+        box-shadow: $boxshadow-button
 
+    .nav-item
+      position: relative
+      display: inline-block
+      
+      .submenu
+        visibility: hidden
+        opacity: 0
+        position: absolute
+        top: 100%
+        left: 0
+        min-width: 120px
+        background: var(--card)
+        border-radius: $border-card
+        padding: 4px 0
+        box-shadow: $boxshadow-card
+        z-index: 999
+        transform: translateY(-5px)
+        transition: all 0.2s ease
+        
+        a
+          display: block
+          padding: 8px 16px
+          margin: 0
+          color: var(--text-p3)
+          font-size: $fs-14
+          white-space: nowrap
+          transition: all 0.2s ease
+          
+          &:hover
+            color: var(--text-p1)
+            background: var(--block-hover)
+          
+          &.active
+            color: var(--text-p1)
+            background: var(--block)
+      
+      &:hover
+        > a
+          color: var(--text-p1)
+          background: var(--block-hover)
+        
+        .submenu
+          visibility: visible
+          opacity: 1
+          transform: translateY(0)
+
+// 移动端适配
 @media screen and (max-width: $device-mobile-max)
-  .navbar.top
+  .navbar
     margin-top: 0
-    padding-left: 0
-    padding-right: 0
+    padding: 0
+    
     nav
-      a:first-child
-        margin-left: 1rem
-      a:last-child
-        margin-right: 1rem
+      flex-direction: column
+      align-items: stretch
+      
+      > a, .nav-item > a
+        width: 100%
+        margin: 0
+        padding: 12px 16px
+      
+      .nav-item
+        width: 100%
+        
+        .submenu
+          position: static
+          visibility: visible
+          opacity: 1
+          transform: none
+          box-shadow: none
+          background: transparent
+          padding: 0
+          
+          a
+            padding: 8px 32px
+            font-size: $fs-13

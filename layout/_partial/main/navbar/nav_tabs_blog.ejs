@@ -6,40 +6,39 @@ function layoutDiv() {
   
   // 主页链接
   if (is_home()) {
-    el += '<a class="active" href="' + url_for(config.index_generator.path) + '">' + __("btn.recent_publish") + '</a>';
+    el += '<a class="active" href="' + url_for(config.index_generator.path) + '">主页</a>';
   } else {
-    el += '<a href="' + url_for(config.index_generator.path) + '">' + __("btn.recent_publish") + '</a>';
+    el += '<a href="' + url_for(config.index_generator.path) + '">主页</a>';
   }
 
-  // 专栏链接
-  if (theme.topic?.publish_list?.length > 0) {
-    if (page.layout == 'index_topic') {
-      el += '<a class="active" href="' + url_for(theme.site_tree.index_topic.base_dir) + '/">' + __("btn.topic") + '</a>';
-    } else {
-      el += '<a href="' + url_for(theme.site_tree.index_topic.base_dir) + '/">' + __("btn.topic") + '</a>';
-    }
-  }
-  
-  // 归档链接
-  if (site.posts && site.posts.length > 0) {
-    if (is_archive()) {
-      el += '<a class="active" href="' + url_for(config.archive_dir) + '/">' + __("btn.archives") + '</a>';
-    } else {
-      el += '<a href="' + url_for(config.archive_dir) + '/">' + __("btn.archives") + '</a>';
-    }
-  }
-  
-  // 自定义导航标签
-  const { nav_tabs } = theme.site_tree.index_blog
-  if (nav_tabs) {
-    for (let key of Object.keys(nav_tabs)) {
-      if (full_url_for(page.path).startsWith(full_url_for(nav_tabs[key]))){
-        el += '<a class="active" href="' + url_for(nav_tabs[key]) + '">' + key + '</a>';
-      } else {
-        el += '<a href="' + url_for(nav_tabs[key]) + '">' + key + '</a>';
-      }
-    }
-  }
+  // 文章菜单
+  el += '<div class="nav-item">';
+  el += '<a href="/archives/">文章</a>';
+  el += '<div class="submenu">';
+  el += '<a href="/categories/">分类</a>';
+  el += '<a href="/tags/">标签</a>';
+  el += '<a href="/archives/">归档</a>';
+  el += '<a href="/topic/">专栏</a>';
+  el += '</div>';
+  el += '</div>';
+
+  // 关于菜单
+  el += '<div class="nav-item">';
+  el += '<a href="/about/">关于</a>';
+  el += '<div class="submenu">';
+  el += '<a href="/about/">关于</a>';
+  el += '<a href="/2024/05/07/hello-world/">博客</a>';
+  el += '<a href="/friends/">友链</a>';
+  el += '</div>';
+  el += '</div>';
+
+  // 世界菜单
+  el += '<div class="nav-item">';
+  el += '<a href="#">世界</a>';
+  el += '<div class="submenu">';
+  el += '<a href="https://www.travellings.cn/go.html" target="_blank">开往</a>';
+  el += '</div>';
+  el += '</div>';
 
   el += '</nav>';
   el += '</div>';
