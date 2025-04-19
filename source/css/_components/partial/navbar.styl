@@ -5,7 +5,6 @@
   background: var(--site-bg)
   position: sticky
   position: -webkit-sticky
-  margin-bottom: 1px
   margin-top: -8px
   
   &:after
@@ -92,30 +91,65 @@
 // 移动端适配
 @media screen and (max-width: $device-mobile-max)
   .navbar
-    margin-top: 0
-    padding: 0
+    position: fixed
+    width: 100%
+    top: 0
+    left: 0
+    z-index: 1000
+    background: var(--site-bg)
+    margin-bottom: 6px
     
     nav
-      flex-direction: column
-      align-items: stretch
-      
-      > a, .nav-item > a
-        width: 100%
-        margin: 0
-        padding: 12px 16px
-      
+      height: 40px  // 明确设置导航栏高度
       .nav-item
-        width: 100%
+        position: static
         
         .submenu
-          position: static
-          visibility: visible
-          opacity: 1
-          transform: none
-          box-shadow: none
-          background: transparent
-          padding: 0
+          position: fixed
+          top: 15px
+          left: 0
+          width: 100%
+          z-index: 999
+          visibility: hidden
+          opacity: 0
+          transform: translateY(-10px)
+          transition: all 0.3s ease
+          padding: 8px 0
+          background: var(--card)
+          box-shadow: $boxshadow-card
+          margin-top: 8px
           
-          a
-            padding: 8px 32px
-            font-size: $fs-13
+        &.active
+          .submenu
+            visibility: visible
+            opacity: 1
+            transform: translateY(0)
+          &:after
+            content: ''
+            position: fixed
+            top: 50px
+            left: 0
+            right: 0
+            bottom: 0
+            background: rgba(0,0,0,0.3)
+            z-index: 998
+    
+    // 隐藏移动端的网站标题和描述
+    .site-info
+      display: none
+      
+    // 或者如果标题在其他容器中，比如
+    .site-title,
+    .site-subtitle
+      display: none
+
+  // 为了防止内容被固定导航栏遮挡，给 main 内容添加上边距
+  .l_main
+    padding-top: 60px    // 比导航栏高度多一点，留出空间
+    #main
+      .logo-wrap
+        display: none
+
+.post-content, .article-content, main
+  position: relative
+  z-index: 1

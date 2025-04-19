@@ -1,7 +1,13 @@
 .mobile-only
   display: none
   @media screen and (max-width: $device-mobile-max)
-    display: block !important
+    &:not(.l_main .header)  // 排除主内容区域的header
+      display: block !important
+
+// 专门针对主内容区域的header
+.l_main .header.mobile-only
+  @media screen and (max-width: $device-mobile-max)
+    display: none !important
 
 .mobile-hidden
   @media screen and (max-width: $device-mobile-max)

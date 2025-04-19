@@ -208,3 +208,45 @@ init.toc()
 init.sidebar()
 init.relativeDate(document.querySelectorAll('#post-meta time'))
 init.registerTabsTag()
+
+document.addEventListener('DOMContentLoaded', function() {
+  const navItems = document.querySelectorAll('.nav-item');
+  
+  navItems.forEach(item => {
+    const link = item.querySelector('a');
+    
+    if (window.innerWidth <= 768) {  // 移动端逻辑
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // 关闭其他打开的子菜单
+        navItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+          }
+        });
+        
+        // 切换当前项的active状态
+        item.classList.toggle('active');
+      });
+    } else {  // 桌面端逻辑
+      // 移除任何可能阻止默认行为的事件监听器
+      link.addEventListener('click', function(e) {
+        if (item.querySelector('.submenu')) {
+          e.preventDefault(); // 只有当有子菜单时才阻止默认行为
+        }
+      });
+    }
+  });
+});
+
+document.addEventListener('click', function(e) {
+  if (window.innerWidth <= 768) {  // 移动端
+    const navItems = document.querySelectorAll('.nav-item');
+    if (!e.target.closest('.nav-item')) {
+      navItems.forEach(item => {
+        item.classList.remove('active');
+      });
+    }
+  }
+});
