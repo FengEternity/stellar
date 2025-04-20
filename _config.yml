@@ -72,7 +72,7 @@ site_tree:
   # 主页配置
   home:
     leftbar: welcome, recent
-    rightbar: 
+    rightbar: null
   # 博客列表页配置
   index_blog:
     base_dir: blog # 只影响自动生成的页面路径

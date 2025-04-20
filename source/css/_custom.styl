@@ -150,3 +150,12 @@ $boxshadow-toast = 0 4px 8px 0px rgba(0, 0, 0, 0.1), 0 12px 16px -4px rgba(0, 0,
     background: transparent;
   }
 }
+
+// 修改布局网格，移除右侧空白区域
+.l_body
+  &:not([rightbar])
+    grid-template-columns: 1fr minmax(200px,var(--width-main)) 0fr
+
+// 隐藏右侧边栏切换按钮
+.rightbar-toggle
+  display: none !important
