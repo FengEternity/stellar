@@ -6,24 +6,27 @@
     <div class="welcome-content">
       <div class="content-wrapper">
         <div class="text-content">
-          <h1 class="title">Hi, I'm Montee! <span class="emoji">ヽ(·∀·)ノ</span></h1>
+          <h1 class="title">Hi, I'm Forsertee! <span class="emoji">ヽ(·∀·)ノ</span></h1>
           
-          <p class="role">
+          <p class="role-work">
             <em>NetWork Enginner at <a href="http://www.njupt.edu.cn">NJUPT</a><span class="emoji">🎓</span></em>
+            <span class="separator"> && </span>
+            <em>BSP Enginner at <a href="http://www.thundersoft.com">Thundersoft</a><span class="emoji">💻</span></em>
           </p>
+
           
-          <h3 class="subtitle"><span class="emoji">🐚</span> A little more about me...</h3>  
+          <!-- <h3 class="subtitle"><span class="emoji">🐚</span> A little more about me...</h3>   -->
 
           <div class="code-block">
-            <pre><code class="language-javascript">const myProfile = {
-  code: [C++, C, Python, Java， JabaScript, HTML, CSS],
-  tools: [Visual Studio, Git, CMake, CLion, Linux],
-  interests: ["Multithreading", "Network Programming", "Image Processing", "Deep Learning"],
-  techCommunities: {
-                        Member: "NJUPT SAST",
-                        Developer: "FileTAG"
+            <pre><code><span style="color:#0000ff">const</span> <span style="color:#267f99">myProfile</span> = {
+  <span style="color:#267f99">code</span>: [<span style="color:#ce9178">C++</span>, <span style="color:#ce9178">C</span>, <span style="color:#ce9178">Python</span>, <span style="color:#ce9178">Java</span>, <span style="color:#ce9178">JavaScript</span>, <span style="color:#ce9178">HTML</span>, <span style="color:#ce9178">CSS</span>],
+  <span style="color:#267f99">tools</span>: [<span style="color:#ce9178">Visual Studio</span>, <span style="color:#ce9178">Git</span>, <span style="color:#ce9178">CMake</span>, <span style="color:#ce9178">CLion</span>, <span style="color:#ce9178">Linux</span>],
+  <span style="color:#267f99">interests</span>: [<span style="color:#ce9178">"Multithreading"</span>, <span style="color:#ce9178">"Network Programming"</span>, <span style="color:#ce9178">"Image Processing"</span>, <span style="color:#ce9178">"Deep Learning"</span>],
+  <span style="color:#267f99">techCommunities</span>: {
+                        <span style="color:#9cdcfe">Member</span>: <span style="color:#ce9178">"NJUPT SAST"</span>,
+                        <span style="color:#9cdcfe">Developer</span>: <span style="color:#ce9178">"FileTAG"</span>
                       },
-  challenge: "Frantically coding away, trying to package myself for the job market!"
+  <span style="color:#267f99">challenge</span>: <span style="color:#ce9178">"Frantically coding away, trying to package myself for the job market!"</span>
 }</code></pre>
           </div>
 
@@ -57,77 +60,16 @@
     </div>
   </div>
 
-  <iframe id="preload-frame" src="/blog/" style="display:none;"></iframe>
-
-  <div class="scripts">
-    <%- partial('_partial/scripts') %>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const preloadFrame = document.getElementById('preload-frame');
-        
-        const welcomeContainer = document.querySelector('.welcome-container');
-        const overlay = document.getElementById('blog-entrance-overlay');
-        const scrollHint = document.querySelector('.scroll-hint');
-        
-        let isAnimating = false;
-        let hasEntered = false;
-        
-        function enterBlog() {
-          if (isAnimating || hasEntered) return;
-          isAnimating = true;
-          
-          welcomeContainer.style.transform = 'translateY(-100%)';
-          overlay.style.opacity = '1';
-          overlay.classList.add('active');
-          
-          setTimeout(function() {
-            hasEntered = true;
-            isAnimating = false;
-            window.location.href = '/blog/';
-          }, 300);
-        }
-        
-        window.addEventListener('wheel', function(e) {
-          if (e.deltaY > 0 && !hasEntered) {
-            enterBlog();
-          }
-        });
-        
-        let touchStartY;
-        window.addEventListener('touchstart', function(e) {
-          touchStartY = e.touches[0].clientY;
-        });
-        
-        window.addEventListener('touchmove', function(e) {
-          if (!touchStartY) return;
-          
-          const touchY = e.touches[0].clientY;
-          const diff = touchStartY - touchY;
-          
-          if (diff > 50 && !hasEntered) {
-            enterBlog();
-            touchStartY = null;
-          }
-        });
-        
-        window.addEventListener('touchend', function() {
-          touchStartY = null;
-        });
-        
-        scrollHint.addEventListener('click', function(e) {
-          e.preventDefault();
-          enterBlog();
-        });
-      });
-    </script>
-  </div>
-
   <style>
     body.welcome-page {
       overflow: hidden;
       margin: 0;
       padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      visibility: hidden;
+    }
+    body.welcome-page.loaded {
+      visibility: visible;
     }
     
     .welcome-container {
@@ -198,7 +140,7 @@
     }
     
     .title {
-      font-size: 2.5rem;
+      font-size: 1.5rem;
       margin: 0 0 10px;
       color: var(--text-p1);
       font-weight: 700;
@@ -210,7 +152,7 @@
     }
     
     .subtitle {
-      font-size: 1.4rem;
+      font-size: 1rem;
       margin: 25px 0 15px;
       color: var(--text-p1);
       display: flex;
@@ -218,11 +160,11 @@
       gap: 10px;
     }
     
-    .role, .blog {
-      font-size: 1.1rem;
+    .role, .blog, .work {
+      font-size: 0.8rem;
       margin: 5px 0;
       color: var(--text-p2);
-      line-height: 1.4;
+      line-height: 0.8;
     }
     
     .welcome-content a {
@@ -364,6 +306,84 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+
+    .separator {
+      margin: 0 8px;
+      color: var(--text-p3);
+    }
   </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 页面完全加载后再预加载博客内容
+      const preloadBlog = () => {
+        const preloadFrame = document.createElement('iframe');
+        preloadFrame.id = 'preload-frame';
+        preloadFrame.style.display = 'none';
+        preloadFrame.src = '/blog/';
+        document.body.appendChild(preloadFrame);
+      };
+      
+      // 先显示欢迎页面
+      document.body.classList.add('loaded');
+      
+      // 延迟预加载博客
+      setTimeout(preloadBlog, 500);
+      
+      const welcomeContainer = document.querySelector('.welcome-container');
+      const overlay = document.getElementById('blog-entrance-overlay');
+      const scrollHint = document.querySelector('.scroll-hint');
+      
+      let isAnimating = false;
+      let hasEntered = false;
+      
+      function enterBlog() {
+        if (isAnimating || hasEntered) return;
+        isAnimating = true;
+        
+        welcomeContainer.style.transform = 'translateY(-100%)';
+        overlay.style.opacity = '1';
+        overlay.classList.add('active');
+        
+        setTimeout(function() {
+          hasEntered = true;
+          isAnimating = false;
+          window.location.href = '/blog/';
+        }, 300);
+      }
+      
+      window.addEventListener('wheel', function(e) {
+        if (e.deltaY > 0 && !hasEntered) {
+          enterBlog();
+        }
+      });
+      
+      let touchStartY;
+      window.addEventListener('touchstart', function(e) {
+        touchStartY = e.touches[0].clientY;
+      });
+      
+      window.addEventListener('touchmove', function(e) {
+        if (!touchStartY) return;
+        
+        const touchY = e.touches[0].clientY;
+        const diff = touchStartY - touchY;
+        
+        if (diff > 50 && !hasEntered) {
+          enterBlog();
+          touchStartY = null;
+        }
+      });
+      
+      window.addEventListener('touchend', function() {
+        touchStartY = null;
+      });
+      
+      scrollHint.addEventListener('click', function(e) {
+        e.preventDefault();
+        enterBlog();
+      });
+    });
+  </script>
 </body>
 </html> 
