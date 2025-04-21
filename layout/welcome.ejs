@@ -4,12 +4,42 @@
 <body class="welcome-page">
   <div class="welcome-container">
     <div class="welcome-content">
-      <div class="avatar">
-        <img src="<%= theme.logo.avatar %>" alt="<%= config.author %>">
+      <div class="content-wrapper">
+        <div class="text-content">
+          <h1 class="title">Hi, I'm Montee! <span class="emoji">ヽ(·∀·)ノ</span></h1>
+          
+          <p class="role">
+            <em>NetWork Enginner at <a href="http://www.njupt.edu.cn">NJUPT</a><span class="emoji">🎓</span></em>
+          </p>
+          
+          <h3 class="subtitle"><span class="emoji">🐚</span> A little more about me...</h3>  
+
+          <div class="code-block">
+            <pre><code class="language-javascript">const myProfile = {
+  code: [C++, C, Python, Java， JabaScript, HTML, CSS],
+  tools: [Visual Studio, Git, CMake, CLion, Linux],
+  interests: ["Multithreading", "Network Programming", "Image Processing", "Deep Learning"],
+  techCommunities: {
+                        Member: "NJUPT SAST",
+                        Developer: "FileTAG"
+                      },
+  challenge: "Frantically coding away, trying to package myself for the job market!"
+}</code></pre>
+          </div>
+
+          <p class="footer-text">
+            An programmer who loves photography, traveling and occasionally writes calligraphy. :)
+          </p>
+        </div>
+        
+        <div class="avatar-container">
+          <div class="avatar">
+            <img src="<%= theme.logo.avatar %>" alt="<%= config.author %>">
+          </div>
+        </div>
       </div>
-      <h1 class="title"><%= config.title %></h1>
-      <p class="subtitle"><%= theme.logo.subtitle || '' %></p>
     </div>
+    
     <div class="scroll-hint">
       <span>向下滑动进入博客</span>
       <div class="scroll-arrow">
@@ -97,6 +127,7 @@
       overflow: hidden;
       margin: 0;
       padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     
     .welcome-container {
@@ -112,23 +143,52 @@
       background-color: var(--site-bg);
       transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
       z-index: 10;
+      overflow-y: auto;
     }
     
     .welcome-content {
-      text-align: center;
-      padding: 20px;
+      padding: 0 20px;
       position: relative;
       z-index: 2;
-      margin-top: 15vh;
+      width: 100%;
+      max-width: 1200px;
+      margin: auto 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .content-wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+    
+    .text-content {
+      text-align: left;
+      flex: 1;
+      padding-right: 120px;
+      max-width: 550px;
+      margin-left: 40px;
+    }
+    
+    .avatar-container {
+      flex: 0 0 auto;
+      margin-right: 20px;
     }
     
     .welcome-content .avatar {
-      width: 120px;
-      height: 120px;
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
       overflow: hidden;
-      margin: 0 auto 20px;
       border: 4px solid var(--theme-color);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
     
     .welcome-content .avatar img {
@@ -137,25 +197,85 @@
       object-fit: cover;
     }
     
-    .welcome-content .title {
+    .title {
       font-size: 2.5rem;
-      margin-bottom: 10px;
+      margin: 0 0 10px;
       color: var(--text-p1);
+      font-weight: 700;
     }
     
-    .welcome-content .subtitle {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
+    .emoji {
+      margin-left: 10px;
+      display: inline-block;
+    }
+    
+    .subtitle {
+      font-size: 1.4rem;
+      margin: 25px 0 15px;
+      color: var(--text-p1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .role, .blog {
+      font-size: 1.1rem;
+      margin: 5px 0;
       color: var(--text-p2);
+      line-height: 1.4;
+    }
+    
+    .welcome-content a {
+      color: #1BCDFC;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .welcome-content a:hover {
+      text-decoration: underline;
+    }
+    
+    .code-block {
+      margin: 15px 0;
+      background-color: #f8f8f8;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    
+    .code-block pre {
+      margin: 0;
+      padding: 15px;
+      overflow-x: auto;
+      background: transparent;
+    }
+    
+    .code-block code {
+      font-family: 'Source Code Pro', monospace;
+      color: #333;
+      font-size: 13px;
+      line-height: 1.5;
+      background: transparent;
+    }
+    
+    .footer-text {
+      font-size: 1rem;
+      margin: 20px 0 10px;
+      color: var(--text-p2);
+      line-height: 1.5;
+      font-style: italic;
     }
     
     .scroll-hint {
-      padding: 15px 0 25px;
+      padding: 20px 0;
       text-align: center;
       color: var(--text-p3);
       animation: bounce 2s infinite;
       cursor: pointer;
       z-index: 2;
+      margin-top: auto;
     }
     
     .scroll-arrow {
@@ -193,6 +313,39 @@
       border-radius: 50%;
       border-top-color: var(--text-p1);
       animation: spin 0.8s linear infinite;
+    }
+    
+    @media (max-width: 768px) {
+      .content-wrapper {
+        flex-direction: column-reverse;
+        align-items: center;
+        padding: 20px 0;
+      }
+      
+      .avatar-container {
+        margin-bottom: 30px;
+        margin-right: 0;
+      }
+      
+      .welcome-content .avatar {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .text-content {
+        padding-right: 0;
+        text-align: center;
+        margin-left: 0;
+      }
+      
+      .title {
+        font-size: 2rem;
+        justify-content: center;
+      }
+      
+      .subtitle {
+        justify-content: center;
+      }
     }
     
     @keyframes bounce {
