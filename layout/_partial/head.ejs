@@ -120,6 +120,10 @@ function custom_inject() {
   <% } %>
 
   <link rel="stylesheet" href="<%- url_for(`${theme.stellar.main_css}?v=${stellar_info('version')}`) %>">
+  
+  <% if (theme.stellar.custom_css) { %>
+    <link rel="stylesheet" href="<%- url_for(`${theme.stellar.custom_css}?v=${stellar_info('version')}`) %>">
+  <% } %>
 
   <% if (config.highlight && config.highlight.enable == true && config.highlight.hljs == true) { %>
     <%- css(theme.style.codeblock.highlightjs_theme) %>
