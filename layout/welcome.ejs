@@ -15,7 +15,7 @@
           </p>
 
           
-          <!-- <h3 class="subtitle"><span class="emoji">🐚</span> A little more about me...</h3>   -->
+          <h3 class="subtitle">A little more about me...</h3>  
 
           <div class="code-block">
             <pre><code><span style="color:#0000ff">const</span> <span style="color:#267f99">myProfile</span> = {
@@ -24,7 +24,7 @@
   <span style="color:#267f99">interests</span>: [<span style="color:#ce9178">"Multithreading"</span>, <span style="color:#ce9178">"Network Programming"</span>, <span style="color:#ce9178">"Image Processing"</span>, <span style="color:#ce9178">"Deep Learning"</span>],
   <span style="color:#267f99">techCommunities</span>: {
                         <span style="color:#9cdcfe">Member</span>: <span style="color:#ce9178">"NJUPT SAST"</span>,
-                        <span style="color:#9cdcfe">Developer</span>: <span style="color:#ce9178">"FileTAG"</span>
+                        <span style="color:#9cdcfe">Developer</span>: <span style="color:#ce9178">"FileTAG"</span>, <span style="color:#ce9178">"IntelliSearch"</span>
                       },
   <span style="color:#267f99">challenge</span>: <span style="color:#ce9178">"Frantically coding away, trying to package myself for the job market!"</span>
 }</code></pre>
@@ -41,16 +41,16 @@
           </div>
           
           <div class="social-icons">
-            <a href="mailto:your-email@example.com" title="Email">
+            <a href="mailto:forsertee@foxmail.com" title="Email">
               <img src="/images/logo/icons8-email-50 (1).png" alt="Email">
             </a>
-            <a href="https://github.com/your-username" title="GitHub">
+            <a href="https://github.com/FengEternity" title="GitHub" class="github-icon">
               <img src="/images/logo/icons8-github-50 (1).png" alt="GitHub">
             </a>
-            <a href="/atom.xml" title="RSS">
-              <img src="/images/logo/icons8-rss-40.png" alt="RSS">
+            <a href="https://www.montylee.cn/rss/atom.xml" title="RSS">
+              <img src="/images/logo/icons8-rss-50.png" alt="RSS">
             </a>
-            <a href="#" title="Like">
+            <a href="https://fengeternity.github.io/love/index.html" title="Like">
               <img src="/images/logo/icons8-love-48.png" alt="Like">
             </a>
           </div>
@@ -169,7 +169,8 @@
     
     .subtitle {
       font-size: 1rem;
-      margin: 25px 0 15px;
+      margin: 15px 0 10px;
+      margin-bottom: 0px;
       color: var(--text-p1);
       display: flex;
       align-items: center;
@@ -196,6 +197,7 @@
     
     .code-block {
       margin: 15px 0;
+      margin-top: 0px;
       background-color: #f8f8f8;
       border-radius: 10px;
       overflow: hidden;
@@ -362,6 +364,15 @@
 
     html.no-js .welcome-container {
       display: none;
+    }
+
+    .github-icon img {
+      width: 30px;
+      height: auto;
+      transition: transform 0.3s;
+    }
+    .github-icon img:hover {
+      transform: scale(1.1);
     }
   </style>
 
