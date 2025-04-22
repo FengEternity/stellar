@@ -51,7 +51,7 @@ function layoutDiv() {
     const minutes = Math.floor(runtime / (1000 * 60) % 60);
     const hours = Math.floor(runtime / (1000 * 60 * 60) % 24);
     const days = Math.floor(runtime / (1000 * 60 * 60 * 24));
-    document.getElementById('site-runtime').textContent = `${days}天${hours}时${minutes}分${seconds}秒`;
+    document.getElementById('site-runtime').textContent = `${days}天`;
   }
   
   // Function to display last updated time
