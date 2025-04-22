@@ -75,6 +75,11 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    // 添加页面加载动画
+    setTimeout(function() {
+      document.querySelector('.welcome-container').classList.add('loaded');
+    }, 100);
+    
     // 加载memos.json并随机显示"think"或"book"标签的内容
     fetch('/api/memos.json')
       .then(response => response.json())
