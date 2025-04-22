@@ -1,0 +1,255 @@
+body
+  visibility: hidden
+  &.welcome-page
+    overflow: hidden
+    margin: 0
+    padding: 0
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif
+  &.welcome-page.loaded
+    visibility: visible
+
+.welcome-container
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100vh
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-between
+  background-color: var(--site-bg)
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1)
+  z-index: 10
+  overflow-y: auto
+
+.welcome-content
+  padding: 0 20px
+  position: relative
+  z-index: 2
+  width: 100%
+  max-width: 1200px
+  margin: auto 0
+  flex: 1
+  display: flex
+  flex-direction: column
+  justify-content: center
+
+.content-wrapper
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+  max-width: 1000px
+  margin: 0 auto
+  padding: 60px 0
+
+.text-content
+  text-align: left
+  flex: 1
+  padding-right: 120px
+  max-width: 550px
+  margin-left: 40px
+
+.avatar-container
+  flex: 0 0 auto
+  margin-right: 20px
+  margin-top: -30px
+
+.welcome-content .avatar
+  width: 220px
+  height: 220px
+  border-radius: 50%
+  overflow: hidden
+  border: 4px solid var(--theme-color)
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1)
+
+.welcome-content .avatar img
+  width: 100%
+  height: 100%
+  object-fit: cover
+
+.title
+  font-size: 1.5rem
+  margin: 0 0 10px
+  color: var(--text-p1)
+  font-weight: 700
+
+.emoji
+  margin-left: 10px
+  display: inline-block
+
+.subtitle
+  font-size: 1rem
+  margin: 15px 0 10px
+  margin-bottom: 0px
+  color: var(--text-p1)
+  display: flex
+  align-items: center
+  gap: 10px
+
+.role, .blog, .work
+  font-size: 0.8rem
+  margin: 5px 0
+  color: var(--text-p2)
+  line-height: 0.8
+
+.welcome-content a
+  color: #1BCDFC
+  text-decoration: none
+  font-weight: 500
+  transition: all 0.3s ease
+
+.welcome-content a:hover
+  text-decoration: underline
+
+.code-block
+  margin: 15px 0
+  margin-top: 0px
+  background-color: #f8f8f8
+  border-radius: 10px
+  overflow: hidden
+  position: relative
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05)
+
+.code-block pre
+  margin: 0
+  padding: 15px
+  overflow-x: auto
+  background: transparent
+
+.code-block code
+  font-family: 'Source Code Pro', monospace
+  color: #333
+  font-size: 13px
+  line-height: 1.5
+  background: transparent
+
+.footer-text
+  font-size: 1rem
+  margin: 20px 0 10px
+  color: var(--text-p2)
+  line-height: 1.5
+  font-style: italic
+
+.scroll-hint
+  padding: 20px 0
+  text-align: center
+  color: var(--text-p3)
+  animation: bounce 2s infinite
+  cursor: pointer
+  z-index: 2
+  margin-top: auto
+
+.scroll-arrow
+  margin-top: 8px
+
+.blog-entrance-overlay
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background-color: var(--site-bg)
+  opacity: 0
+  z-index: 5
+  transition: opacity 0.4s ease
+  display: flex
+  align-items: center
+  justify-content: center
+
+.loading-spinner
+  opacity: 0
+  transition: opacity 0.2s ease 0.1s
+
+.blog-entrance-overlay.active .loading-spinner
+  opacity: 1
+
+.spinner
+  width: 40px
+  height: 40px
+  border: 4px solid rgba(128, 128, 128, 0.3)
+  border-radius: 50%
+  border-top-color: var(--text-p1)
+  animation: spin 0.8s linear infinite
+
+@media (max-width: 768px)
+  .content-wrapper
+    flex-direction: column-reverse
+    align-items: center
+    padding: 20px 0
+  
+  .avatar-container
+    margin-bottom: 30px
+    margin-right: 0
+  
+  .welcome-content .avatar
+    width: 150px
+    height: 150px
+  
+  .text-content
+    padding-right: 0
+    text-align: center
+    margin-left: 0
+  
+  .title
+    font-size: 2rem
+    justify-content: center
+  
+  .subtitle
+    justify-content: center
+  
+  .social-icons
+    margin-bottom: 40px
+
+@keyframes bounce
+  0%, 20%, 50%, 80%, 100%
+    transform: translateY(0)
+  40%
+    transform: translateY(-10px)
+  60%
+    transform: translateY(-5px)
+
+@keyframes spin
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+
+.separator
+  margin: 0 8px
+  color: var(--text-p3)
+
+.social-icons
+  display: flex
+  justify-content: center
+  margin-top: 50px
+  gap: 12px
+
+.social-icons a
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 40px
+  height: 40px
+  border-radius: 50%
+  background-color: rgba(255, 255, 255, 0.1)
+  transition: all 0.3s ease
+
+.social-icons a:hover
+  transform: translateY(-3px)
+  background-color: rgba(255, 255, 255, 0.2)
+
+.social-icons img
+  width: 24px
+  height: 24px
+
+html.no-js .welcome-container
+  display: none
+
+.github-icon img
+  width: 30px
+  height: auto
+  transition: transform 0.3s
+  &:hover
+    transform: scale(1.1) 
