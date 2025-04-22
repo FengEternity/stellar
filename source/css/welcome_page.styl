@@ -62,6 +62,9 @@ body
   flex-direction: column
   align-items: flex-start
   min-width: 0
+  opacity: 0
+  animation: fadeIn 0.8s ease forwards
+  animation-delay: 0.8s
 
 .avatar-container
   flex: 0 0 auto
@@ -71,6 +74,21 @@ body
   justify-content: center
   margin-right: 40px
   margin-top: -30px
+  opacity: 0
+  animation: fadeIn 1s ease forwards
+  animation-delay: 0.2s
+  .avatar
+    width: 220px
+    height: 220px
+    border-radius: 50%
+    overflow: hidden
+    border: 4px solid var(--theme-color)
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1)
+    margin-bottom: 20px
+    opacity: 0
+    transform: scale(0.9)
+    animation: scaleIn 0.8s ease forwards
+    animation-delay: 0.4s
 
 .welcome-content .avatar
   width: 220px
@@ -93,6 +111,9 @@ body
   font-weight: 700
   word-wrap: break-word
   max-width: 100%
+  opacity: 0
+  animation: fadeInUp 0.8s ease forwards
+  animation-delay: 0.8s
 
 .emoji
   margin-left: 10px
@@ -106,12 +127,18 @@ body
   display: flex
   align-items: center
   gap: 10px
+  opacity: 0
+  animation: fadeInUp 0.8s ease forwards
+  animation-delay: 1.2s
 
-.role, .blog, .work
+.role-work
   font-size: 0.8rem
   margin: 5px 0
   color: var(--text-p2)
   line-height: 0.8
+  opacity: 0
+  animation: fadeInUp 0.8s ease forwards
+  animation-delay: 1.0s
 
 .welcome-content a
   color: #1BCDFC
@@ -135,6 +162,9 @@ body
   margin-left: 0
   margin-right: auto
   align-self: flex-start
+  opacity: 0
+  animation: scaleIn 0.8s ease forwards
+  animation-delay: 1.6s
 
 .code-block pre
   margin: 0
@@ -299,6 +329,9 @@ body
   gap: 12px
   margin-top: 20px
   width: 100%
+  opacity: 0
+  animation: fadeInUp 0.8s ease forwards
+  animation-delay: 0.6s
 
 .social-icons a
   display: flex
@@ -334,6 +367,73 @@ html.no-js .welcome-container
   align-items: center
   position: relative
   text-align: center
+  margin-top: -20px
+  opacity: 0
+  animation: fadeIn 0.8s ease forwards
+  animation-delay: 1.6s
+
+.text-container
+  margin-bottom: 0px
+  width: 100%
+  color: rgba(0,0,0,0.6)
+
+.arrow-container
+  height: 20px
+  width: 100%
+  text-align: center
+  margin-bottom: 15px
+
+.scroll-arrow
+  transition: transform 0.75s ease
+  color: rgba(0,0,0,0.6)
+
+.title,
+.role-work,
+.subtitle,
+.code-block,
+.avatar-container,
+.avatar,
+.social-icons,
+.scroll-hint-container
+  animation-fill-mode: forwards
+
+@keyframes fadeInUp
+  from
+    opacity: 0
+    transform: translateY(30px)
+  to
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes fadeIn
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+@keyframes scaleIn
+  from
+    opacity: 0
+    transform: scale(0.9)
+  to
+    opacity: 1
+    transform: scale(1)
+
+.role, .blog, .work
+  font-size: 0.8rem
+  margin: 5px 0
+  color: var(--text-p2)
+  line-height: 0.8
+  opacity: 0
+  animation: fadeInUp 0.8s ease forwards
+  animation-delay: 1.4s
+
+.scroll-hint-container
+  opacity: 0
+  animation: fadeIn 0.8s ease forwards
+  animation-delay: 1.6s
+
+.scroll-hint-container
   margin-top: -20px
 
 .text-container
