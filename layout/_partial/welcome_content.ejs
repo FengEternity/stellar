@@ -1,0 +1,189 @@
+<div class="welcome-container">
+  <div class="welcome-content">
+    <div class="content-wrapper">
+      <div class="text-content">
+        <h1 class="title">Hi, I'm Forsertee! <span class="emoji">ヽ(·∀·)ノ</span></h1>
+        
+        <p class="role-work">
+          <em>NetWork Enginner at <a href="http://www.njupt.edu.cn">NJUPT</a><span class="emoji">🎓</span></em>
+          <span class="separator"> && </span>
+          <em>BSP Enginner at <a href="http://www.thundersoft.com">Thundersoft</a><span class="emoji">💻</span></em>
+        </p>
+
+        
+        <h3 class="subtitle">A little more about me...</h3>  
+
+        <div class="code-block">
+          <pre><code><span style="color:#0000ff">const</span> <span style="color:#267f99">myProfile</span> = {
+  <span style="color:#267f99">code</span>: [<span style="color:#ce9178">C++</span>, <span style="color:#ce9178">C</span>, <span style="color:#ce9178">Python</span>, <span style="color:#ce9178">Java</span>, <span style="color:#ce9178">JavaScript</span>, <span style="color:#ce9178">HTML</span>, <span style="color:#ce9178">CSS</span>],
+  <span style="color:#267f99">tools</span>: [<span style="color:#ce9178">Visual Studio</span>, <span style="color:#ce9178">Git</span>, <span style="color:#ce9178">CMake</span>, <span style="color:#ce9178">CLion</span>, <span style="color:#ce9178">Linux</span>],
+  <span style="color:#267f99">interests</span>: [<span style="color:#ce9178">"Multithreading"</span>, <span style="color:#ce9178">"Network Programming"</span>, <span style="color:#ce9178">"Image Processing"</span>, <span style="color:#ce9178">"Deep Learning"</span>],
+  <span style="color:#267f99">techCommunities</span>: {
+                      <span style="color:#9cdcfe">Member</span>: <span style="color:#ce9178">"NJUPT SAST"</span>,
+                      <span style="color:#9cdcfe">Developer</span>: <span style="color:#ce9178">"FileTAG"</span>, <span style="color:#ce9178">"IntelliSearch"</span>
+                    },
+  <span style="color:#267f99">challenge</span>: <span style="color:#ce9178">"Frantically coding away, trying to package myself for the job market!"</span>
+}</code></pre>
+        </div>
+
+        <!-- <p class="footer-text">
+          An programmer who loves photography, traveling and occasionally writes calligraphy. :)
+        </p> -->
+      </div>
+      
+      <div class="avatar-container">
+        <div class="avatar">
+          <img src="/images/avatar/avatar.jpg" alt="<%= config.author %>" no-lazy>
+        </div>
+        
+        <div class="social-icons">
+          <a href="mailto:forsertee@foxmail.com" title="Email">
+            <img src="/images/logo/icons8-email-50.png" alt="Email" no-lazy>
+          </a>
+          <a href="https://github.com/FengEternity" title="GitHub" class="github-icon">
+            <img src="/images/logo/icons8-github-50.png" alt="GitHub" no-lazy>
+          </a>
+          <a href="https://www.montylee.cn/rss/atom.xml" title="RSS">
+            <img src="/images/logo/icons8-rss-50.png" alt="RSS" no-lazy>
+          </a>
+          <a href="https://fengeternity.github.io/love/index.html" title="LOVE">
+            <img src="/images/logo/icons8-love-48.png" alt="LOVE" no-lazy>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="scroll-hint-container">
+    <div class="text-container">
+      <span id="random-think" style="font-size: 0.7em; color: rgba(0,0,0,0.6);">向下滑动进入博客</span>
+    </div>
+    <div class="arrow-container">
+      <svg class="scroll-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z" fill="currentColor"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="blog-entrance-overlay" id="blog-entrance-overlay">
+  <div class="loading-spinner">
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 加载memos.json并随机显示"think"或"book"标签的内容
+    fetch('/api/memos.json')
+      .then(response => response.json())
+      .then(data => {
+        // 筛选带有"think"或"book"标签的内容
+        const filteredMemos = data.filter(memo => 
+          memo.tags.includes('think') || memo.tags.includes('book')
+        );
+        
+        if (filteredMemos.length > 0) {
+          // 随机选择一条
+          const randomIndex = Math.floor(Math.random() * filteredMemos.length);
+          const randomMemo = filteredMemos[randomIndex];
+          
+          // 将内容显示在滑动提示区域
+          const randomThinkElement = document.getElementById('random-think');
+          if (randomThinkElement) {
+            // 如果内容有多行，用<br>连接
+            randomThinkElement.innerHTML = randomMemo.content.join('<br>');
+          }
+        }
+      })
+      .catch(error => {
+        console.error('加载memos.json失败:', error);
+      });
+    
+    // 添加箭头的抖动动画
+    const arrowElement = document.querySelector('.scroll-arrow');
+    if (arrowElement) {
+      function animateArrow() {
+        arrowElement.style.transform = 'translateY(5px)';
+        setTimeout(() => {
+          arrowElement.style.transform = 'translateY(0)';
+        }, 750);
+      }
+      
+      // 初始动画
+      setInterval(animateArrow, 1500);
+    }
+    
+    // 检测是否为移动设备
+    function isMobileDevice() {
+      return (window.innerWidth <= 768) || 
+             /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    
+    // 如果是移动设备，直接跳转到博客页面
+    if (isMobileDevice()) {
+      window.location.href = '/blog/';
+      return;
+    }
+    
+    // 桌面设备显示欢迎页面
+    document.body.classList.add('loaded');
+    
+    const welcomeContainer = document.querySelector('.welcome-container');
+    const overlay = document.getElementById('blog-entrance-overlay');
+    const scrollHint = document.querySelector('.scroll-hint-container');
+    
+    let isAnimating = false;
+    let hasEntered = false;
+    
+    function enterBlog() {
+      if (isAnimating || hasEntered) return;
+      isAnimating = true;
+      
+      welcomeContainer.style.transform = 'translateY(-100%)';
+      overlay.style.opacity = '1';
+      overlay.classList.add('active');
+      
+      setTimeout(function() {
+        hasEntered = true;
+        isAnimating = false;
+        window.location.href = '/blog/';
+      }, 300);
+    }
+    
+    window.addEventListener('wheel', function(e) {
+      if (e.deltaY > 0 && !hasEntered) {
+        enterBlog();
+      }
+    });
+    
+    let touchStartY;
+    window.addEventListener('touchstart', function(e) {
+      touchStartY = e.touches[0].clientY;
+    });
+    
+    window.addEventListener('touchmove', function(e) {
+      if (!touchStartY) return;
+      
+      const touchY = e.touches[0].clientY;
+      const diff = touchStartY - touchY;
+      
+      if (diff > 50 && !hasEntered) {
+        enterBlog();
+        touchStartY = null;
+      }
+    });
+    
+    window.addEventListener('touchend', function() {
+      touchStartY = null;
+    });
+    
+    scrollHint.addEventListener('click', function(e) {
+      e.preventDefault();
+      enterBlog();
+    });
+  });
+
+  document.documentElement.classList.add('js');
+</script> 

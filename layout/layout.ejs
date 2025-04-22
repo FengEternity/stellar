@@ -6,6 +6,13 @@ if (['post', 'page', 'wiki', null].includes(page.layout)) {
     page_type = 'content'
   }
 }
+
+// 对welcome布局进行特殊处理
+if (page.layout === 'welcome') {
+  // 直接返回welcome的内容，不包装在layout中
+  return body;
+}
+
 // 文章类型：技术类文章/文学类文章
 var article_type = theme.article.type
 if (page.type?.length > 0) {
