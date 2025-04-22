@@ -1,4 +1,5 @@
 .widgets .widget-wrapper.timeline
+  position: relative
   .tag-plugin.timeline
     padding-left: 0 !important
     &:before
@@ -6,8 +7,10 @@
       width: 2px !important
       background: var(--block-hover) !important
   .widget-body
-    overflow: hidden
+    overflow: auto
     padding: 0 var(--gap-padding)
+    position: relative
+    height: calc(100vh - 200px)
   .tag-plugin.timeline .timenode
     position: relative
     z-index: 1
