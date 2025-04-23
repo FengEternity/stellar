@@ -29,26 +29,24 @@ function layoutBreadcrumb() {
   var el = ''
   // 1.main
   el += `<div class="top bread-nav footnote">`
-  // 2.left
-  el += `<div class="left">`
-  // 3.left.top: 面包屑导航
-  el += `<div class="flex-row" id="breadcrumb">`
-    // 首页
-    el += `<a class="cap breadcrumb" href="${url_for(config.root)}">${__("btn.home")}</a>`
-    if (theme.wiki.tree[page.wiki]) {
-      el += partial('breadcrumb/wiki')
-    } else if (page.notebook) {
-      el += partial('breadcrumb/note')
-    } else if (page.layout == 'post') {
-      el += partial('breadcrumb/blog')
-    } else {
-      el += partial('breadcrumb/page')
-    }
-  // end 3.left.top
-  el += `</div>`
-  // 3.left.bottom
-  el += partial('dateinfo')
-  // end 2.left
+  // 2.left - 移除left div，让内容在同一行显示
+  // 3.面包屑导航和日期信息放在同一个flex容器中
+  el += `<div class="flex-row" style="justify-content: space-between; align-items: center; width: 100%;">`
+    // 左侧面包屑
+    el += `<div class="flex-row" id="breadcrumb">`
+      el += `<a class="cap breadcrumb" href="${url_for(config.root)}">${__("btn.home")}</a>`
+      if (theme.wiki.tree[page.wiki]) {
+        el += partial('breadcrumb/wiki')
+      } else if (page.notebook) {
+        el += partial('breadcrumb/note')
+      } else if (page.layout == 'post') {
+        el += partial('breadcrumb/blog')
+      } else {
+        el += partial('breadcrumb/page')
+      }
+    el += `</div>`
+    // 右侧日期信息
+    el += partial('dateinfo')
   el += `</div>`
   // end 1.main
   el += `</div>`
@@ -111,12 +109,13 @@ function layoutDiv() {
   var style = ``
   var el = ``
   el += `<div class="article banner top">`
-  if (banner.url?.length > 0) {
-    el += `<img class="bg" src="${banner.url}">`
-    if (banner.color) {
-      style += ' style="--text-banner:' + banner.color + '"'
-    }
-  }
+  // 移除背景图片的渲染
+  // if (banner.url?.length > 0) {
+  //   el += `<img class="bg" src="${banner.url}">`
+  //   if (banner.color) {
+  //     style += ' style="--text-banner:' + banner.color + '"'
+  //   }
+  // }
   el += `
   <div class="content"${style}>
     ${top}
