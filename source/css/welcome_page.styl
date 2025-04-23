@@ -42,6 +42,12 @@ body
     opacity: 1
     transform: translateY(0)
 
+  @media (prefers-color-scheme: dark)
+    background-image: none
+    background-color: var(--site-bg)
+    &::before
+      background-color: rgba(0, 0, 0, 0.2)
+
 .welcome-content
   padding: 0 20px
   position: relative
