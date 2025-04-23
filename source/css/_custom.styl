@@ -291,3 +291,53 @@ $boxshadow-toast = 0 4px 8px 0px rgba(0, 0, 0, 0.1), 0 12px 16px -4px rgba(0, 0,
 @media screen and (max-width: $device-mobile)
   .l_body
     padding-top: 50px
+
+// 文章页面布局样式
+.l_body.post
+  // 隐藏左侧边栏
+  .l_left
+    display: none
+  
+  // 调整主内容区域
+  display: flex
+  justify-content: center
+  max-width: calc(var(--width-main) + var(--gap-l))
+  margin: 0 auto
+  padding: 0 1rem
+  
+  .l_main
+    margin: 0 auto
+    width: var(--width-main)
+    max-width: 100%
+  
+  // 移动端适配
+  @media screen and (max-width: $device-mobile)
+    padding: 0.5rem
+
+// 文章列表卡片样式
+.post-list
+  .post-card
+    background: transparent !important
+    
+    article
+      background: transparent !important
+      
+      // 调整卡片内容样式
+      .excerpt
+        background: transparent !important
+      
+      // 调整标题样式
+      .post-title
+        color: var(--text-p1)
+      
+      // 调整元信息样式
+      .meta
+        color: var(--text-p3)
+        
+    // 鼠标悬停效果
+    &:hover
+      transform: none
+      box-shadow: none
+      
+      article
+        background: transparent !important

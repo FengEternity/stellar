@@ -2,15 +2,27 @@
   padding: 0 1rem
   z-index: 8
   top: 0
-  background: var(--site-bg)
   position: sticky
   position: -webkit-sticky
-  margin-top: -8px
+  margin-top: -6px
   
+  // 添加磨砂玻璃效果
+  background: rgba(255, 255, 255, 0.3) // 半透明背景
+  backdrop-filter: saturate(180%) blur(20px) // 磨砂效果
+  -webkit-backdrop-filter: saturate(180%) blur(20px) // Safari 兼容
+  
+  // 暗色模式适配
+  :root[data-theme="dark"] &
+    background: rgba(18, 18, 18, 0.7)
+  
+  // 确保在不支持 backdrop-filter 的浏览器上也有良好显示
+  @supports not (backdrop-filter: blur(20px))
+    background: var(--site-bg)
+    
   &:after
     content: ''
     height: 2px
-    border-radius: 2px
+    border-radius: 16px
     position: absolute
     bottom: 0
     left: 1rem
