@@ -36,24 +36,42 @@ ul,ol
 table:not([class])
   border-collapse: collapse
   overflow: auto
-  display: block
+  display: table
+  width: 100%
   margin: 1rem 0
   max-width: 100%
   vertical-align: text-top
   --fsp: $fsp2
   font-size: var(--fsp)
+  text-align: center
   th
     background: var(--block)
-  td,th
+    text-align: center
+  td
+    text-align: center
     padding: 0.5em 1em
     border: 1px solid var(--block-hover)
     line-height: 1.5
+    word-break: break-word
+    white-space: normal
   tr
-    word-break: keep-all
-    white-space:nowrap
     trans()
     &:hover
       background: var(--block)
 
 *[ff=title]
   font-family: $ff-logo
+
+// 确保代码块左对齐
+.code-block,
+.highlight,
+pre,
+code
+  text-align: left !important
+
+// 代码块内的具体元素也保持左对齐
+.code-block pre,
+.code-block code,
+.highlight pre,
+.highlight code
+  text-align: left !important
