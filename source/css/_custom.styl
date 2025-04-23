@@ -154,7 +154,62 @@ $boxshadow-toast = 0 4px 8px 0px rgba(0, 0, 0, 0.1), 0 12px 16px -4px rgba(0, 0,
 // 修改布局网格，移除右侧空白区域
 .l_body
   &:not([rightbar])
-    grid-template-columns: 1fr minmax(200px,var(--width-main)) 0fr
+    display: flex
+    justify-content: center
+    width: 100%
+    margin: 0 auto
+
+// 主页布局样式
+.l_body.index
+  display: flex
+  justify-content: center
+  width: 100%
+  
+  // 内容容器
+  .body-wrap
+    display: flex
+    justify-content: center
+    max-width: calc(var(--width-main) + var(--side-content-width) + var(--gap-l))
+    width: 100%
+    padding: 0 1rem
+    margin: 0 auto
+  
+  // 左侧栏样式
+  .l_left
+    flex: 0 0 var(--side-content-width)
+    margin-right: var(--gap-l)
+  
+  // 主内容区域样式
+  .l_main
+    flex: 0 0 var(--width-main)
+    width: var(--width-main)
+    max-width: 100%
+    
+  // 隐藏右侧栏
+  .l_right
+    display: none
+    
+  // 响应式布局 - 根据内容宽度自适应
+  @media screen and (max-width: calc(var(--width-main) + var(--side-content-width) + var(--gap-l) * 2))
+    .body-wrap
+      max-width: var(--width-main)
+      
+    .l_left
+      display: none
+    
+    .l_main
+      flex: 1
+      width: 100%
+      max-width: var(--width-main)
+      margin: 0 auto
+      
+      .post-list
+        width: 100%
+        
+  // 特小屏幕适配
+  @media screen and (max-width: $device-mobile)
+    .body-wrap
+      padding: 0 0.5rem
 
 // 隐藏右侧边栏切换按钮
 .rightbar-toggle
