@@ -1,10 +1,15 @@
 .navbar
-  padding: 0 1rem
+  padding: 0
   z-index: 8
   top: 0
   position: sticky
   position: -webkit-sticky
   margin-top: -6px
+  // 添加最大宽度限制和居中对齐
+  max-width: var(--width-main)
+  margin-left: auto
+  margin-right: auto
+  width: 100%
   
   // 添加磨砂玻璃效果
   background: rgba(255, 255, 255, 0.3) // 半透明背景
@@ -25,8 +30,8 @@
     border-radius: 16px
     position: absolute
     bottom: 0
-    left: 1rem
-    right: 1rem
+    left: 0
+    right: 0
     background: var(--block-hover)
 
   nav
