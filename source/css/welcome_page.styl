@@ -85,6 +85,7 @@ body
   opacity: 0
   animation: fadeIn 0.8s ease forwards
   animation-delay: 0.8s
+  font-size: 1.15rem
 
 .avatar-container
   flex: 0 0 auto
@@ -125,7 +126,7 @@ body
   object-fit: cover
 
 .title
-  font-size: 1.5rem
+  font-size: 2.2rem
   margin: 0 0 10px
   color: var(--text-p1)
   font-weight: 700
@@ -152,13 +153,14 @@ body
   animation-delay: 1.2s
 
 .role-work
-  font-size: 1.0rem
-  margin: 5px 0
-  color: var(--text-p2)
-  line-height: 0.8
-  opacity: 0
-  animation: fadeInUp 0.8s ease forwards
-  animation-delay: 1.0s
+  display: inline
+  font-size: 1.1rem
+  line-height: 1.5
+  word-break: break-word
+  em
+    margin-right: 4px
+  .separator
+    margin: 0 4px
 
 .welcome-content a
   color: #1BCDFC
@@ -208,7 +210,7 @@ body
   width: fit-content
 
 .footer-text
-  font-size: 1rem
+  font-size: 1.15rem
   margin: 20px 0 10px
   color: var(--text-p2)
   line-height: 1.5
@@ -265,46 +267,35 @@ body
     flex-direction: column-reverse
     align-items: center
     padding: 20px 10px
-    gap: 20px
-  
+    gap: 28px
+
   .avatar-container
     margin-right: 0
-    margin-bottom: 30px
-  
+    margin-bottom: 20px
+    margin-top: 0
+
   .welcome-content .avatar
-    width: 150px
-    height: 150px
-    margin-bottom: 15px
-  
+    width: 120px
+    height: 120px
+    margin-bottom: 10px
+
   .text-content
-    padding: 0 20px
+    padding: 0 8px
     align-items: center
-  
+    width: 100%
+    margin-left: 0
+
   .title
     font-size: 1.3rem
     text-align: center
-  
-  .subtitle
-    justify-content: center
-  
-  .social-icons
-    margin-top: 15px
-  
-  .role, .work
-    font-size: 0.8rem
+
+  .role-work
+    gap: 0 4px
+    font-size: 0.95rem
+
+  .footer-text
+    font-size: 0.95rem
     text-align: center
-    padding: 0 10px
-  
-  .code-block
-    max-width: 90%
-    margin: 15px auto
-  
-  .code-block pre,
-  .code-block code
-    font-size: 12px
-    padding: 10px
-  .welcome-container
-    background-attachment: scroll
 
 @media (max-width: 480px)
   .content-wrapper
@@ -398,7 +389,7 @@ html.no-js .welcome-container
 .text-container
   margin-bottom: 0px
   width: 100%
-  color: rgba(0,0,0,0.6)
+  color: #333
 
 .arrow-container
   height: 20px
@@ -465,7 +456,7 @@ html.no-js .welcome-container
 .text-container
   margin-bottom: 0px
   width: 100%
-  color: rgba(0,0,0,0.6)
+  color: #333
 
 .arrow-container
   height: 20px
@@ -475,4 +466,11 @@ html.no-js .welcome-container
 
 .scroll-arrow
   transition: transform 0.75s ease
-  color: rgba(0,0,0,0.6) 
+  color: rgba(0,0,0,0.6)
+
+@media (prefers-color-scheme: dark)
+  .text-container
+    color: #eee 
+
+#random-think
+  color: #222 !important 

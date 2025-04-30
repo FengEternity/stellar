@@ -41,3 +41,18 @@
     line-height: 1.5
   a:not([class])
     font-weight: 500
+
+// 针对小屏幕的响应式优化
+@media (max-width: 600px)
+  .footer-content
+    flex-direction: column
+    align-items: flex-start
+    font-size: 0.95em
+    gap: 0.3em
+
+  .footer-main,
+  .footer-info
+    width: 100%
+    display: block
+    text-align: left
+    word-break: break-all
